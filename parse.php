@@ -9,3 +9,29 @@
 * @Repository : https://github.com/BaseMax/ReadableSubtitle
 *
 **/
+function starts($input,$value): bool {
+	return strncmp($input, $value, strlen($value));
+}
+if(isset($_POST['srt'])) {
+	header("Content-Type: text/plain");
+	$srt=$_POST['srt'];
+	$lines=explode("\n", $srt);
+	$output="";
+	foreach($lines as $line) {
+		$line=trim($line);
+		if(is_numeric($line[0]) || $line=="") {
+			continue;
+		}
+        // We can directly print it, without $output variable.
+		$output.=$line."\n";
+	}
+	print $output;
+}
+else {
+?>
+	<form action="" method="POST">
+		<textarea name="srt"></textarea>
+		<button>Check</button>
+	</form>
+<?php
+}
