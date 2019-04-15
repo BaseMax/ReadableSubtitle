@@ -15,8 +15,9 @@ function starts($input,$value): bool {
 if(isset($_POST['srt'])) {
 	header("Content-Type: text/plain");
 	$srt=$_POST['srt'];
-	$lines=explode("\n", $srt);
 	$output="";
+	// We can improve it, performance and memory management...
+	$lines=explode("\n", $srt);
 	foreach($lines as $line) {
 		$line=trim($line);
 		if(is_numeric($line[0]) || $line=="") {
